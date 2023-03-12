@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Features</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--[if IE 7]>
+<!--<link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">-->
+
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="fontawesome-free-5.7.2-web/css/v4-shims.min.css">
+
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script><link rel="stylesheet" type="text/css" href="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.css">
+<link rel="stylesheet" type="text/css" href="chartist/dist/chartist.min.css">
+<script src="chartist/dist/chartist.min.js"></script>
+<script src="chartist/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+<!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.20/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.20/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.20/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.20/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.20/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/><!-- JQuery-UI -->
+<link type="text/css" href="jqueryui/1.11.2-start/jquery-ui.min.css" rel="Stylesheet" />
+<script type="text/javascript" src="jqueryui/1.11.2-start/jquery-ui.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/1.10.20/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/1.10.20/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/1.10.20/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="datatables/1.10.20/datatables.bootstrap4.min.js"></script>
+<link type="text/css" href="datatables/1.10.20/datatables.bootstrap4.min.css" rel="stylesheet" />
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            var scenarioTable = $('.scenario-result-table').DataTable({
+
+                "order": [],
+                "language": {
+                    searchPlaceholder: "Filter",
+                    search: ""
+                }
+            });
+
+            $('.example-table table').DataTable({
+                searching: false,
+                ordering: false,
+                paging: false,
+                info: false
+            });
+
+            $('.example-table-in-scenario table').DataTable({
+                searching: false,
+                ordering: false,
+                paging: false,
+                info: false
+            });
+
+            $('#evidence-table').DataTable(
+                {
+                    searching: false,
+                    ordering: false,
+                    paging: false,
+                    info: false
+                }
+            );
+
+
+            $(".scenario-docs .card-body table").wrap("<div class='table-responsive'></div>");
+
+            $("#requirements-tabs").tabs();
+            $("#test-tabs").tabs();
+
+            var requirementsTree = [{"text":"Funcionalidad Pet Buy","type":"feature","href":"4a8cd603ed422a0d1a8915c6a1eae12c7da5d3e8388cebd9c18548023bd226ab.html","nodes":[],"selectable":false,"tags":["\u003ca href\u003d\u0027##beforetable\u0027\u003e\u003ci class\u003d\u0027fa fa-check-circle-o success-icon \u0027 title\u003d\u0027SUCCESS\u0027\u003e\u003c/i\u003e\u003c/a\u003e","\u003cspan class\u003d\u0027feature-count\u0027\u003e4 scenarios\u003c/span\u003e"]}];
+
+            $('#tree').treeview({
+                data: requirementsTree,
+                enableLinks: true,
+                showTags: true,
+                expandIcon: "glyphicon glyphicon-folder-close",
+                collapseIcon: "glyphicon glyphicon-folder-open",
+                emptyIcon: "glyphicon glyphicon-book"
+            });
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".scenario-docs > div > p").html(function () {
+                var text = $(this).text().trim().split(" ");
+                var first = text.shift();
+                return (text.length > 0 ? "<strong>" + first + "</strong> " : first) + text.join(" ");
+            });
+        });
+    </script>
+</head>
+
+<body class="results-page">
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle"></span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+            <a href='index.html'>Home</a> > <a href="capabilities.html">Requirements</a>
+
+
+
+                    > <span class="truncate-40">Funcionalidad Pet Buy</span>
+
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li >
+            <a href="index.html"><i class="fa fa-check-square-o"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="fa fa-book"></i> Requirements</a>
+        </li>
+        <li class="active">
+            <a href="#"><i class="fa fa-comments-o"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 11-03-2023 18:31</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+    <div id="beforetable"></div>
+    <div id="results-dashboard">
+        <div class="table">
+            <div class=row">
+                <div class="col-sm-12">
+                    <div>
+                        <div clas="table">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                        <span>
+                                            <h2><i class="fa fa-book"></i> Feature:  Funcionalidad Pet Buy</h2>
+                                        </span>
+                                    </div>
+                                        <div class="col-sm-4">
+                                        <span class="feature-tags">
+                                                <p class="tag">
+                                                    <span class="badge tag-badge" style="background:default;">
+                                                        <i class="fa fa-tag"></i>&nbsp;<a class="tagLink"
+                                                                                          style="background:default;"
+                                                                                          href="c9d76aef19e4aacf94a8dace567b5c2c5fb582a757337617e7f609c06373ac6c.html">Eliminar
+                                                        (tag)</a>
+                                                    </span>
+                                                </p>
+                                        </span>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="requirementNarrativeTitle">
+                                
+                            </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <!-- Requirements result tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#specs"><i class="fas fa-comments"></i> Specifications</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#results"><i class="fas fa-tachometer-alt"></i> Test Results</a>
+                            </li>
+                        </ul>
+
+                        <!-- Specifications and Results tabs -->
+                        <div class="card border">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div id="specs" class="tab-pane fade in active">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+
+                                                    <!--- TOC --->
+                                                    <div id="toc">
+                                                        <h3>Overview</h3>
+                                                        <table class="table" id="toc-table">
+                                                                    <tr>
+                                                                        <td class="rule-toc-entry" colspan="2">
+                                                                            <a href="#05c4ce7b-b756-4ab2-a6d6-f48650834708" title="View scenario details for this rule">
+                                                                            Rule: Yo como owner quiero poder relizar la gestión
+                                                                        </td>
+                                                                    </tr>
+                                                                        <tr>
+                                                                            <td style="width:95%;" class="toc-title">
+                                                                                <span class="scenario-toc-entry">
+                                                                                    <a href="#0ccb559102221b97245fb961f945c32cf69009aaf5896ce497611343ec4ef451" title="View scenario details">
+                                                                                        <i class="far fa-comment-dots"></i> Scenario Outline: Crear un nuevo pet en la store de manera satisfactoria
+                                                                                    </a>
+                                                                                        (1 example)
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:5%;">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                               href="a855ad5192cfd0500012f694509442ea087c5dc3d119ef063d06d084346d8712.html"
+                                                                                               title="View test results">
+                                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                                </a>
+
+
+                                                                                        </td>
+                                                                                            <td>
+                                                                                                <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                                   href="a855ad5192cfd0500012f694509442ea087c5dc3d119ef063d06d084346d8712.html"
+                                                                                                   title="View test results">
+                                                                                                    <i class="fas fa-search-plus"></i>
+                                                                                                </a>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:95%;" class="toc-title">
+                                                                                <span class="scenario-toc-entry">
+                                                                                    <a href="#55584ff2ae9cbb2dae5b07500f591c0696e2afbaa960b055ba41c88b59931be3" title="View scenario details">
+                                                                                        <i class="far fa-comment-dots"></i> Scenario Outline: Obtener un pet de la store de manera satisfactoria
+                                                                                    </a>
+                                                                                        (1 example)
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:5%;">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                               href="ab007ec7f0d3cb7f98b51d0e05bced58c8eff0bf34621b5e8d89b4dcf1ef52f2.html"
+                                                                                               title="View test results">
+                                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                                </a>
+
+
+                                                                                        </td>
+                                                                                            <td>
+                                                                                                <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                                   href="ab007ec7f0d3cb7f98b51d0e05bced58c8eff0bf34621b5e8d89b4dcf1ef52f2.html"
+                                                                                                   title="View test results">
+                                                                                                    <i class="fas fa-search-plus"></i>
+                                                                                                </a>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:95%;" class="toc-title">
+                                                                                <span class="scenario-toc-entry">
+                                                                                    <a href="#d22756f88685a5c6b873d7bc746dffba7dd1ee4c02d267c8a7559ffddd015f45" title="View scenario details">
+                                                                                        <i class="far fa-comment-dots"></i> Scenario Outline: Actualizar un pet en la store de manera satisfactoria
+                                                                                    </a>
+                                                                                        (1 example)
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:5%;">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                               href="e16bbcb3f7e97552f74411942b2f50afc43c04b6e91b2af157e6983cd8072dac.html"
+                                                                                               title="View test results">
+                                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                                </a>
+
+
+                                                                                        </td>
+                                                                                            <td>
+                                                                                                <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                                   href="e16bbcb3f7e97552f74411942b2f50afc43c04b6e91b2af157e6983cd8072dac.html"
+                                                                                                   title="View test results">
+                                                                                                    <i class="fas fa-search-plus"></i>
+                                                                                                </a>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:95%;" class="toc-title">
+                                                                                <span class="scenario-toc-entry">
+                                                                                    <a href="#df3663458f90bbf41b9779d937e9549b1bb0ed01b4b031f5e94580f663f4764b" title="View scenario details">
+                                                                                        <i class="far fa-comment-dots"></i> Scenario Outline: Eliminar un pet de la store de manera satisfactoria por su identificador
+                                                                                    </a>
+                                                                                        (1 example)
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width:5%;">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                               href="1ff258197511c6f8468e4a1c432e154f967e3268779124d9253cc7857d1b9889.html"
+                                                                                               title="View test results">
+                                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                                                                </a>
+
+
+                                                                                        </td>
+                                                                                            <td>
+                                                                                                <a style="margin-left:0.5em;padding-right: 1.5em;"
+                                                                                                   href="1ff258197511c6f8468e4a1c432e154f967e3268779124d9253cc7857d1b9889.html"
+                                                                                                   title="View test results">
+                                                                                                    <i class="fas fa-search-plus"></i>
+                                                                                                </a>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                        </table>
+                                                    </div>
+                                                    <!--- END OF TOC --->
+
+                                                    <h3>Scenarios</h3>
+
+                                                        <a name="05c4ce7b-b756-4ab2-a6d6-f48650834708" ></a>
+                                                            <div class="rule-title">Rule: Yo como owner quiero poder relizar la gestión</div>
+                                                            <div class="scenario-comments">
+                                                                <i class="fas fa-info-circle"></i>  de mi mascota en la tienda
+                                                            </div>
+
+
+                                                            <div class="scenario-docs card" id="0ccb559102221b97245fb961f945c32cf69009aaf5896ce497611343ec4ef451">
+                                                                <div class="scenario-docs card-header success"
+                                                                     style="min-height:1.5em;">
+                                                                    <div>
+                                                            <span class="scenario-heading">
+                                                                <a href="a855ad5192cfd0500012f694509442ea087c5dc3d119ef063d06d084346d8712.html"
+                                                                   title="View test results">Scenario Outline: Crear un nuevo pet en la store de manera satisfactoria</a>
+                                                            </span>
+                                                                        <span class="scenario-result-icon">
+                                                                
+
+                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="scenario-docs card-body">
+                                                                        <p><p>Given que como owner, creo el request para crear el pet en la store</p>
+<table>
+<thead>
+<tr><th>petId</th><th>categoryId</th><th>categoryName</th><th>petName</th><th>photUrls</th><th>tagsId</th><th>tagsName</th><th>status</th></tr>
+</thead>
+<tbody>
+<tr><td>{petId}</td><td>{categoryId}</td><td>{categoryName}</td><td>{petName}</td><td>{photUrls}</td><td>{tagsId}</td><td>{tagsName}</td><td>{status}</td></tr>
+</tbody>
+</table>
+</p>
+                                                                        <p>When como owner envio el request para crear el pet</p>
+                                                                        <p>Then como owner valido que se creo correctamente y con el estado {code}</p>
+                                                                    <div class="examples">
+                                                                            <p><p>Examples:</p>
+<blockquote>
+</blockquote>
+<div class='example-table-in-scenario'><table>
+<thead>
+<tr><th>petId</th><th>categoryId</th><th>categoryName</th><th>petName</th><th>photUrls</th><th>tagsId</th><th>tagsName</th><th>status</th><th>code</th><th></th></tr>
+</thead>
+<tbody>
+<tr><td>11</td><td>0</td><td>mascota</td><td>thor</td><td>/src/images/download.jpg</td><td>0</td><td>pets</td><td>available</td><td>200</td><td><a href='a855ad5192cfd0500012f694509442ea087c5dc3d119ef063d06d084346d8712.html#beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a></td></tr>
+</tbody>
+</table></div>
+</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="scenario-docs card" id="55584ff2ae9cbb2dae5b07500f591c0696e2afbaa960b055ba41c88b59931be3">
+                                                                <div class="scenario-docs card-header success"
+                                                                     style="min-height:1.5em;">
+                                                                    <div>
+                                                            <span class="scenario-heading">
+                                                                <a href="ab007ec7f0d3cb7f98b51d0e05bced58c8eff0bf34621b5e8d89b4dcf1ef52f2.html"
+                                                                   title="View test results">Scenario Outline: Obtener un pet de la store de manera satisfactoria</a>
+                                                            </span>
+                                                                        <span class="scenario-result-icon">
+                                                                
+
+                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="scenario-docs card-body">
+                                                                        <p><p>Given que como owner, creo el request para crear el pet en la store</p>
+<table>
+<thead>
+<tr><th>petId</th><th>categoryId</th><th>categoryName</th><th>petName</th><th>photUrls</th><th>tagsId</th><th>tagsName</th><th>status</th></tr>
+</thead>
+<tbody>
+<tr><td>{petId}</td><td>{categoryId}</td><td>{categoryName}</td><td>{petName}</td><td>{photUrls}</td><td>{tagsId}</td><td>{tagsName}</td><td>{status}</td></tr>
+</tbody>
+</table>
+</p>
+                                                                        <p>And como owner envio el request para crear el pet</p>
+                                                                        <p>When como owner consulta a la aplicacion para obtener pet por id</p>
+                                                                        <p>Then como owner valido que se muestra el pet y con el estado {code}</p>
+                                                                    <div class="examples">
+                                                                            <p><p>Examples:</p>
+<blockquote>
+</blockquote>
+<div class='example-table-in-scenario'><table>
+<thead>
+<tr><th>petId</th><th>categoryId</th><th>categoryName</th><th>petName</th><th>photUrls</th><th>tagsId</th><th>tagsName</th><th>status</th><th>code</th><th></th></tr>
+</thead>
+<tbody>
+<tr><td>11</td><td>0</td><td>mascota</td><td>thor</td><td>/src/images/download.jpg</td><td>0</td><td>pets</td><td>available</td><td>200</td><td><a href='ab007ec7f0d3cb7f98b51d0e05bced58c8eff0bf34621b5e8d89b4dcf1ef52f2.html#beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a></td></tr>
+</tbody>
+</table></div>
+</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="scenario-docs card" id="d22756f88685a5c6b873d7bc746dffba7dd1ee4c02d267c8a7559ffddd015f45">
+                                                                <div class="scenario-docs card-header success"
+                                                                     style="min-height:1.5em;">
+                                                                    <div>
+                                                            <span class="scenario-heading">
+                                                                <a href="e16bbcb3f7e97552f74411942b2f50afc43c04b6e91b2af157e6983cd8072dac.html"
+                                                                   title="View test results">Scenario Outline: Actualizar un pet en la store de manera satisfactoria</a>
+                                                            </span>
+                                                                        <span class="scenario-result-icon">
+                                                                
+
+                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="scenario-docs card-body">
+                                                                        <p><p>Given que como owner, creo el request para actualizar el pet en la store</p>
+<table>
+<thead>
+<tr><th>petId</th><th>categoryId</th><th>categoryName</th><th>petName</th><th>photUrls</th><th>tagsId</th><th>tagsName</th><th>status</th></tr>
+</thead>
+<tbody>
+<tr><td>{petId}</td><td>{categoryId}</td><td>{categoryName}</td><td>{petName}</td><td>{photUrls}</td><td>{tagsId}</td><td>{tagsName}</td><td>{status}</td></tr>
+</tbody>
+</table>
+</p>
+                                                                        <p>When como owner envio el request para actualizar el pet</p>
+                                                                        <p>Then como owner valido que se actualizo correctamente y con el estado {code}</p>
+                                                                    <div class="examples">
+                                                                            <p><p>Examples:</p>
+<blockquote>
+</blockquote>
+<div class='example-table-in-scenario'><table>
+<thead>
+<tr><th>petId</th><th>categoryId</th><th>categoryName</th><th>petName</th><th>photUrls</th><th>tagsId</th><th>tagsName</th><th>status</th><th>code</th><th></th></tr>
+</thead>
+<tbody>
+<tr><td>11</td><td>0</td><td>aves</td><td>juan</td><td>/src/images/download.jpg</td><td>0</td><td>petito</td><td>available</td><td>200</td><td><a href='e16bbcb3f7e97552f74411942b2f50afc43c04b6e91b2af157e6983cd8072dac.html#beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a></td></tr>
+</tbody>
+</table></div>
+</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="scenario-docs card" id="df3663458f90bbf41b9779d937e9549b1bb0ed01b4b031f5e94580f663f4764b">
+                                                                <div class="scenario-docs card-header success"
+                                                                     style="min-height:1.5em;">
+                                                                    <div>
+                                                            <span class="scenario-heading">
+                                                                <a href="1ff258197511c6f8468e4a1c432e154f967e3268779124d9253cc7857d1b9889.html"
+                                                                   title="View test results">Scenario Outline: Eliminar un pet de la store de manera satisfactoria por su identificador</a>
+                                                            </span>
+                                                                        <span class="scenario-result-icon">
+                                                                
+
+                                                                                <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a>
+                                                            </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="scenario-docs card-body">
+                                                                        <p>When como owner realizo la eliminacion del pet por su id {idPet}</p>
+                                                                        <p>Then como owner valido que se elimino correctamente con estado {code}</p>
+                                                                    <div class="examples">
+                                                                            <p><p>Examples:</p>
+<blockquote>
+</blockquote>
+<div class='example-table-in-scenario'><table>
+<thead>
+<tr><th>idPet</th><th>code</th><th></th></tr>
+</thead>
+<tbody>
+<tr><td>11</td><td>200</td><td><a href='1ff258197511c6f8468e4a1c432e154f967e3268779124d9253cc7857d1b9889.html#beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a></td></tr>
+</tbody>
+</table></div>
+</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="results" class="tab-pane fade">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+
+                                                <div style="width:300px;" class="chart-container automated-and-manual-results">
+                                                    <div class="ct-chart ct-square"></div>
+                                                </div>
+                                                <script>
+
+                                                    var labels = ['100%', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+                                                    // Our series array that contains series objects or in this case series data arrays
+
+                                                    var series = [{meta: 'Passing tests (automated)', value: 4}, {meta: 'Passing tests (manual)', value: 0}, {meta: 'Pending tests (automated)', value: 0}, {meta: 'Pending tests (manual)', value: 0}, {meta: 'Ignored tests (automated)', value: 0}, {meta: 'Ignored tests (manual)', value: 0}, {meta: 'Skipped tests (automated)', value: 0}, {meta: 'Skipped tests (manual)', value: 0}, {meta: 'Failing tests (automated)', value: 0}, {meta: 'Failing tests (manual)', value: 0}, {meta: 'Broken tests (automated)', value: 0}, {meta: 'Broken tests (manual)', value: 0}, {meta: 'Compromised tests (automated)', value: 0}, {meta: 'Compromised tests (manual)', value: 0}];
+
+                                                    // As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
+                                                    // as you saw in the previous example
+                                                    var options = {
+                                                        width: 350,
+                                                        height: 300
+                                                    };
+
+                                                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                                        new Chartist.Pie('.ct-chart', {
+                                                            series: series,
+                                                            labels: labels,
+                                                        }, {
+                                                            donut: true,
+                                                            donutWidth: 60,
+                                                            donutSolid: true,
+                                                            startAngle: 270,
+                                                            showLabel: true
+                                                        }, options);
+                                                    });
+
+                                                </script>
+                                            </div>
+                                            <div class="col-sm-8">
+
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">Scenario Results (including rows of test
+                                                                data)
+                                                            </th>
+                                                            <th scope="col" colspan="2" class="automated-stats">
+                                                                Automated
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                                <td class="aggregate-result-count">
+                                                                    <a href="d389cce4645b87e6274203e73d78203256025522745e2646a9348d320efb6807.html"><i
+                                                                                class='fa fa-check-circle-o success-icon'></i>&nbsp;Passing</a>
+                                                                </td>
+                                                            <td class="automated-stats">4</td>
+                                                            <td class="automated-stats">100%</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="aggregate-result-count"><i
+                                                                            class='fa fa-stop-circle-o pending-icon'></i>&nbsp;Pending
+                                                                </td>
+                                                            <td class="automated-stats">0</td>
+                                                            <td class="automated-stats"> </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="aggregate-result-count"><i
+                                                                            class='fa fa-ban ignored-icon'></i>&nbsp;Ignored
+                                                                </td>
+                                                            <td class="automated-stats">0</td>
+                                                            <td class="automated-stats"> </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="aggregate-result-count"><i
+                                                                            class='fa fa-fast-forward skip-icon'></i>&nbsp;Skipped
+                                                                </td>
+                                                            <td class="automated-stats">0</td>
+                                                            <td class="automated-stats"> </td>
+                                                        </tr>
+                                                        <tr>
+                                                                    <td colspan="3"><i
+                                                                                class='fa fa-times failure-icon'></i>&nbsp;<em>Unsuccessful</em></a>
+                                                                    </td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                                <td class="aggregate-result-count indented-error-category">
+                                                                    <i
+                                                                            class='fa fa-times-circle failure-icon'></i>&nbsp;Failed
+                                                                </td>
+                                                            <td class="automated-stats">0</td>
+                                                            <td class="automated-stats"> </td>
+                                                        <tr>
+                                                                <td class="aggregate-result-count indented-error-category">
+                                                                    <i
+                                                                            class='fa fa-exclamation-triangle error-icon'></i>&nbsp;Broken
+                                                                </td>
+                                                            <td class="automated-stats">0</td>
+                                                            <td class="automated-stats"> </td>
+                                                        <tr>
+                                                                <td class="aggregate-result-count indented-error-category">
+                                                                    <i
+                                                                            class='fa fa-chain-broken compromised-icon'></i>&nbsp;Compromised
+                                                                </td>
+                                                            <td class="automated-stats">0</td>
+                                                            <td class="automated-stats"> </td>
+                                                        </tr>
+                                                        <tr class="summary-stats">
+                                                            <td class="aggregate-result-count">Total</td>
+                                                            <td class="automated-stats">4</td>
+                                                            <td class="automated-stats"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Execution Time</th>
+                                                            <th>Clock Time</th>
+                                                            <th>Fastest Test</th>
+                                                            <th>Slowest Test</th>
+                                                            <th>Average Execution Time</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>4s</td>
+                                                            <td>4s</td>
+                                                            <td>520ms</td>
+                                                            <td>2s</td>
+                                                            <td>1s</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h3><i class="fas fa-cogs"></i> Automated Tests</h3>
+
+                                                        <table class="scenario-result-table table"
+                                                               id="scenario-results">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="test-name-column">Scenario</th>
+                                                                <th>Steps</th>
+                                                                <th>Start Time</th>
+                                                                <th>Duration</th>
+                                                                <th>Result</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="scenario-result SUCCESS">
+                                                                    <td>
+                                                                            <a href="a855ad5192cfd0500012f694509442ea087c5dc3d119ef063d06d084346d8712.html">Crear un nuevo pet en la store de manera satisfactoria</a>
+                                                                            (1 example)
+                                                                    </td>
+                                                                    <td>3</td>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td>
+                                                                            <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                style="display:none">SUCCESS</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="scenario-result SUCCESS">
+                                                                    <td>
+                                                                            <a href="ab007ec7f0d3cb7f98b51d0e05bced58c8eff0bf34621b5e8d89b4dcf1ef52f2.html">Obtener un pet de la store de manera satisfactoria</a>
+                                                                            (1 example)
+                                                                    </td>
+                                                                    <td>4</td>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td>
+                                                                            <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                style="display:none">SUCCESS</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="scenario-result SUCCESS">
+                                                                    <td>
+                                                                            <a href="e16bbcb3f7e97552f74411942b2f50afc43c04b6e91b2af157e6983cd8072dac.html">Actualizar un pet en la store de manera satisfactoria</a>
+                                                                            (1 example)
+                                                                    </td>
+                                                                    <td>3</td>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td>
+                                                                            <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                style="display:none">SUCCESS</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="scenario-result SUCCESS">
+                                                                    <td>
+                                                                            <a href="1ff258197511c6f8468e4a1c432e154f967e3268779124d9253cc7857d1b9889.html">Eliminar un pet de la store de manera satisfactoria por su identificador</a>
+                                                                            (1 example)
+                                                                    </td>
+                                                                    <td>2</td>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td>
+                                                                            <a href='##beforetable'><i class='fa fa-check-circle-o success-icon ' title='SUCCESS'></i></a> <span
+                                                                                style="display:none">SUCCESS</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h3><i class="fas fa-edit"></i> Manual Tests</h3>
+
+                                                        No manual tests were recorded
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="version">Serenity BDD version 2.4.24</span>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>

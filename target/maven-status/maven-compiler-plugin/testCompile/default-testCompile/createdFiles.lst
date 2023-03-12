@@ -1,0 +1,6 @@
+com/pe/serenitybdd/steps/generic/PetApi.class
+com/pe/serenitybdd/runner/Runner.class
+com/pe/serenitybdd/pet/PetInfo.class
+com/pe/serenitybdd/steps/stepsdefinitions/PetStepsDefinitions.class
+com/pe/serenitybdd/pet/Category.class
+com/pe/serenitybdd/pet/Tag.class
